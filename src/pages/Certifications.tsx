@@ -54,10 +54,10 @@ const Certifications = () => {
         <h2 className="text-3xl font-bold tracking-tight sm:text-5xl">My Certifications</h2>
       </div>
 
-      {/* Grid: 1 column mobile, 2 columns desktop */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+      {/* Grid: 1 column mobile, 2 columns tablet/desktop */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8">
         {certs.map((cert) => (
-          <Card key={cert.id} className="group relative overflow-hidden rounded-2xl border-0 shadow-xl aspect-[4/3] sm:aspect-[16/9] md:aspect-[4/3]">
+          <Card key={cert.id} className="group relative overflow-hidden rounded-2xl border-0 shadow-xl aspect-[4/5] sm:aspect-[3/2] lg:aspect-[4/3]">
             
             {/* 1. The Background Image */}
             <img
@@ -70,30 +70,30 @@ const Certifications = () => {
             <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/70 to-black/20 transition-opacity group-hover:via-black/80" />
 
             {/* 3. The Content sitting on top */}
-            <CardContent className="relative h-full flex flex-col justify-end p-6 sm:p-8 text-white">
-              <div className="space-y-3">
+            <CardContent className="relative h-full flex flex-col justify-end p-4 sm:p-6 lg:p-8 text-white">
+              <div className="space-y-2 sm:space-y-3">
                  {/* Issuer & Date Row */}
-                <div className="flex items-center justify-between text-white/80 text-sm font-medium mb-2">
-                  <div className="flex items-center gap-2">
-                     <CheckCircle2 className="w-4 h-4 text-primary" />
-                     {cert.issuer}
+                <div className="flex items-center justify-between text-white/80 text-xs sm:text-sm font-medium mb-2">
+                  <div className="flex items-center gap-1.5 sm:gap-2">
+                     <CheckCircle2 className="w-3 h-3 sm:w-4 sm:h-4 text-primary" />
+                     <span className="truncate">{cert.issuer}</span>
                   </div>
-                  <div className="flex items-center gap-1.5">
-                     <Calendar className="w-4 h-4" />
-                     {cert.date}
+                  <div className="flex items-center gap-1 sm:gap-1.5 whitespace-nowrap">
+                     <Calendar className="w-3 h-3 sm:w-4 sm:h-4" />
+                     <span>{cert.date}</span>
                   </div>
                 </div>
 
                 {/* Title */}
-                <h3 className="text-2xl sm:text-3xl font-bold leading-tight">
+                <h3 className="text-lg sm:text-xl lg:text-2xl font-bold leading-tight">
                   {cert.title}
                 </h3>
 
                  {/* Tags */}
-                <div className="flex flex-wrap gap-2 pt-2">
+                <div className="flex flex-wrap gap-1.5 sm:gap-2 pt-2">
                   {cert.tags.map(tag => (
                     // Using white/20 background for subtle glass effect tags
-                    <Badge key={tag} variant="secondary" className="bg-white/20 hover:bg-white/30 text-white border-0 font-normal tracking-wider">
+                    <Badge key={tag} variant="secondary" className="bg-white/20 hover:bg-white/30 text-white border-0 font-normal text-xs sm:text-sm tracking-wider px-2 py-1">
                       {tag}
                     </Badge>
                   ))}
@@ -101,10 +101,12 @@ const Certifications = () => {
               </div>
 
               {/* Verify Button - Appears/Brightens on Hover */}
-              <div className="mt-8 pt-6 border-t border-white/20 flex justify-end opacity-90 group-hover:opacity-100 transition-opacity">
-                 <Button variant="outline" className="border-white text-black hover:bg-white hover:text-black gap-2 rounded-full transition-all" asChild>
+              <div className="mt-4 sm:mt-6 lg:mt-8 pt-3 sm:pt-4 lg:pt-6 border-t border-white/20 flex justify-end opacity-90 group-hover:opacity-100 transition-opacity">
+                 <Button variant="outline" className="border-white text-black hover:bg-white hover:text-black gap-2 rounded-full transition-all text-xs sm:text-sm px-3 py-2 sm:px-4" asChild>
                     <a href={cert.link} target="_blank" rel="noreferrer">
-                       Verify Credential <ExternalLink className="w-4 h-4" />
+                       <span className="hidden sm:inline">Verify Credential</span>
+                       <span className="sm:hidden">Verify</span>
+                       <ExternalLink className="w-3 h-3 sm:w-4 sm:h-4" />
                     </a>
                  </Button>
               </div>
